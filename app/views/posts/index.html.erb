@@ -1,1 +1,11 @@
-<h1>index.html.erb</h1>
+<h1>Hi Guys, Welcome to my Blog</h1>
+
+
+<% @posts.each do |post| %>
+
+  <div class="panel" >
+    <p><%= link_to post.title, post_path(post) %></p>
+    <p><%= post.body %></p>
+  </div>
+
+<% end %>

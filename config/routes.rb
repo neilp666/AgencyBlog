@@ -1,9 +1,19 @@
 Rails.application.routes.draw do
   
-  get 'about' => "pages#about"
-  get 'contact' => "pages#contact"
+  get 'about' => "pages#about", as: :about
+  get 'contact' => "pages#contact", as: :contact
 
-  get "posts" => "posts#index"
+  get "/posts" => "posts#index"
+  post "/posts" => "posts#create"
+
+  get "/post/:id" => "posts#show", as: :post
+  get "/posts/new" => "posts#new"
+
+ 
+
+  
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
