@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   
   def index
-    @posts = Post.all
+    @posts = Post.all.order("created_at DESC")
   end
 
   def new
@@ -11,6 +11,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.save
+    flash[:notice] = "Post successfully created"
     redirect_to post_path(@post)
   end
 
@@ -26,12 +27,17 @@ class PostsController < ApplicationController
   def update
       @post = Post.find(params[:id])
       @post.update(post_params)
+
+      flash[:notice] = "Post successfully updated"
       redirect_to post_path@post
   end
 
   def destroy
      @post = Post.find(params[:id])
      @post.destroy
+
+
+     flash[:notice] = "Post successfully destroyed"
      redirect_to posts_path
   end
 
