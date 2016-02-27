@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :find_post, only: [:show, :edit, :update, :destroy]
   
   def index
     @posts = Post.all.order("created_at DESC")
@@ -17,15 +18,12 @@ class PostsController < ApplicationController
 
 
   def show
-    @post = Post.find(params[:id])
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-      @post = Post.find(params[:id])
       @post.update(post_params)
 
       flash[:notice] = "Post successfully updated"
@@ -33,18 +31,20 @@ class PostsController < ApplicationController
   end
 
   def destroy
-     @post = Post.find(params[:id])
      @post.destroy
-
-
      flash[:notice] = "Post successfully destroyed"
      redirect_to posts_path
   end
 
   private
 
+  def find_post
+      @post = Post.find(params[:id])
+  end
+
   def post_params
       params.require(:post).permit(:title, :body)
   end
+
 
 end
