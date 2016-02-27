@@ -3,19 +3,8 @@ Rails.application.routes.draw do
   get 'about' => "pages#about", as: :about
   get 'contact' => "pages#contact", as: :contact
 
-  get "/posts" => "posts#index", as: :posts
-  post "/posts" => "posts#create"
+  resources :posts
 
-  get "/post/:id" => "posts#show", as: :post
-
-  patch "post/:id" => "posts#update"
-
-  patch "post/:id" => "posts#update"
-  delete "post/:id" => "posts#destroy"
-
-  get "/posts/new" => "posts#new", as: :new_post
-
-  get "/post/:id/edit" => "posts#edit", as: :edit_post
 
  
 
