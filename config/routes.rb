@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   post "/posts" => "posts#create"
 
   get "/post/:id" => "posts#show", as: :post
+
+  patch "post/:id" => "posts#update"
   get "/posts/new" => "posts#new"
+
+  get "/post/:id/edit" => "posts#edit", as: :edit_post
 
  
 
