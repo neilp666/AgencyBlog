@@ -22,33 +22,49 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <p>
                        <%= @post.body %>
+
+                       <hr>
+                       <h4>All Comments:</h4>
+                       <hr>
+
+
+                       <%= render @post.comments.all.order("created_at DESC") %>
                     </p>
                 </div>
             </div>
         </div>
       </article>
+
+
+<div class="lightbg"> 
+<div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2>Leave a Comment</h2>
+                <%= form_for [@post, @post.comments.build] do |f| %>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>Name</label>
+                            <%= f.text_field :name, class: "form-control", placeholder: "Name" %><br>
+                        </div>
+                    </div>
+                   
                     
-
-    <h2> All Comments:</h2>
-
-    <%= render @post.comments.all.order("created_at DESC") %>
-
-
-
-  <h1> Leave a Comment </h1>
-
-  <%= form_for [@post, @post.comments.build] do |f| %>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %><br>
-
-
-    <%= f.label :body %><br>
-    <%= f.text_area :body %><br>
-
-    <%= f.submit %>
-
-  <% end %>
-
-  <h1> <%= link_to "back", posts_path %> </h1>
-
-
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                          <%= f.text_area :body, class: "form-control", placeholder: "Comment" %><br>
+                        </div>
+                    </div>
+                    <br>
+                    <div id="success"></div>
+                    <div class="row">
+                        <div class="form-group col-xs-12">
+                            <button type="submit" class="btn btn-default">Send</button>
+                            <%= f.submit class: "btn btn-default" %>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>                 
+</div>
