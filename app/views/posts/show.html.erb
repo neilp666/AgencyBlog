@@ -10,7 +10,7 @@
 
     <h2> All Comments:</h2>
 
-    <%= render @post.comments %>
+    <%= render @post.comments.all.order("created_at DESC") %>
 
 
 

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  root 'posts#index'
   
   get 'about' => "pages#about", as: :about
   get 'contact' => "pages#contact", as: :contact
